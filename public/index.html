@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+  <link rel="stylesheet" href="<%= BASE_URL %>cdn/element-ui/2.12.0/theme-chalk/index.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>cdn/animate/3.5.2/animate.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>cdn/avue/avue.css">
+  <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css"> -->
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>很抱歉，如果没有 JavaScript 支持，网站将不能正常工作。请启用浏览器的 JavaScript 然后继续。</strong>
+  </noscript>
+  <div id="loading" class="x-loading">
+    <style>
+      /* 为了最快速度打开加载框，样式加入此处 */
+      * {
+        margin: 0 auto;
+      }
+      .x-loading {
+        height: 100%;
+        height: 100vh;
+        width: 100%;
+        width: 100vw;
+        font-size: 10px;
+        position: fixed;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        background: #475069;
+        user-select: none;
+        z-index: 99999;
+      }
+
+      .x-loading__body {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        .x-loading__body {
+          width: 50vw;
+          height: 50vw;
+          max-width: 500px;
+          max-height: 500px;
+        }
+      }
+
+      .x-loading__body-face {
+        position: absolute;
+        border-radius: 50%;
+        border-style: solid;
+        -webkit-animation: loading 1s linear infinite;
+        animation: loading 1s linear infinite;
+      }
+
+      .x-loading__body-face:nth-child(1) {
+        width: 100%;
+        height: 100%;
+        color: magenta;
+        border-color: currentColor transparent transparent currentColor;
+        border-width: 0.2em 0.2em 0em 0em;
+        --deg: -45deg;
+        -webkit-animation-direction: normal;
+        animation-direction: normal;
+        -webkit-animation-duration: .7s;
+        animation-duration: .7s;
+      }
+
+      .x-loading__body-face:nth-child(2) {
+        width: 80%;
+        height: 80%;
+        color: cyan;
+        border-color: currentColor currentColor transparent transparent;
+        border-width: 0.2em 0em 0em 0.2em;
+        --deg: -135deg;
+        -webkit-animation-direction: reverse;
+        animation-direction: reverse;
+        -webkit-animation-duration: .8s;
+        animation-duration: .8s;
+      }
+
+      .x-loading__body-logo {
+        width: 40%;
+        /* -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-duration: .3s;
+        animation-duration: .3s; */
+        animation: shaking .2s steps(6, end) infinite;
+      }
+
+      .x-loading__body-face-circle {
+        position: absolute;
+        width: 50%;
+        height: 0.1em;
+        top: 50%;
+        left: 50%;
+        background-color: transparent;
+        -webkit-transform: rotate(var(--deg));
+        transform: rotate(var(--deg));
+        -webkit-transform-origin: left;
+        transform-origin: left;
+      }
+
+      .x-loading__body-face-circle::before {
+        position: absolute;
+        top: -0.5em;
+        right: -0.5em;
+        content: '';
+        width: 1em;
+        height: 1em;
+        background-color: currentColor;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 0 2em, 0 0 4em, 0 0 6em, 0 0 8em, 0 0 10em, 0 0 0 0.5em rgba(255, 255, 0, 0.1);
+        box-shadow: 0 0 2em, 0 0 4em, 0 0 6em, 0 0 8em, 0 0 10em, 0 0 0 0.5em rgba(255, 255, 0, 0.1);
+      }
+
+      @keyframes loading {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      @-webkit-keyframes loading {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes shaking {
+        0%{
+          filter: drop-shadow(2.3px 2.3px 0px ) drop-shadow(-2.3px -2.3px 0px magenta);
+          transform: translate(1px, 1px);}
+        20%{
+          filter: drop-shadow(-2.3px 2.3px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+          transform: translate(-2px, 1px);}
+        40%{
+          filter: drop-shadow(2.3px -2.3px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+          transform: translate(1px, -1px);}
+        60%{
+          filter: drop-shadow(-2.3px -2.3px 0px cyan) drop-shadow(2.3px 2.3px 0px magenta);
+          transform: translate(-1px, -1px);}
+        80%{
+          filter: drop-shadow(-2px 2.3px 0px cyan) drop-shadow(-2.3px 2px 0px magenta);
+          transform: translate(2px, 0px);}
+        100%{
+          filter: drop-shadow(-2.3px 1px 0px cyan) drop-shadow(1px -2.3px 0px magenta);
+          transform: translate(1px, 1px);}
+      }
+    </style>
+    <div class="x-loading__body animated fadeIn">
+      <div class="x-loading__body-face">
+        <div class="x-loading__body-face-circle"></div>
+      </div>
+      <div class="x-loading__body-face">
+        <div class="x-loading__body-face-circle"></div>
+      </div>
+      <!-- <img class="x-loading__body-logo animated headShake" src="<%= BASE_URL %>img/X.png" alt=""> -->
+      <img class="x-loading__body-logo" src="<%= BASE_URL %>img/X.png" alt="">
+    </div>
+  </div>
+
+  <div id="app">
+  </div>
+
+  <!-- <script src="<%= BASE_URL %>cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
+  <script src="<%= BASE_URL %>cdn/vuex/2.4.1/vuex.min.js" charset="utf-8"></script>
+  <script src="<%= BASE_URL %>cdn/vue-router/3.0.2/vue-router.min.js" charset="utf-8"></script> -->
+  <script src="<%= BASE_URL %>cdn/vue/2.5.2/vue.min.js" charset="utf-8"></script>
+  <script src="<%= BASE_URL %>cdn/vuex/2.4.1/vuex.min.js" charset="utf-8"></script>
+  <script src="<%= BASE_URL %>cdn/vue-router/3.0.2/vue-router.min.js" charset="utf-8"></script>
+  <!-- <script src="<%= BASE_URL %>cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script> -->
+  <script src="<%= BASE_URL %>cdn/element-ui/2.12.0/index.js" charset="utf-8"></script>
+
+</body>
+
+</html>

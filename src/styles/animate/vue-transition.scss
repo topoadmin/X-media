@@ -1,0 +1,53 @@
+// 过渡动画 横向渐变
+.fade-transverse-leave-active,
+.fade-transverse-enter-active {
+  transition: all .5s;
+}
+
+.fade-transverse-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transverse-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+// 过渡动画 缩放渐变
+.fade-scale-leave-active,
+.fade-scale-enter-active {
+  transition: all .5s;
+}
+
+.fade-scale-enter {
+  opacity: 0;
+  transform: scale(1.2);
+}
+
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+
+@keyframes shaking {
+  0%{
+    filter: drop-shadow(2.3px 2.3px 0px ) drop-shadow(-2.3px -2.3px 0px magenta);
+    transform: translate(1px, 1px);}
+  20%{
+    filter: drop-shadow(-2.3px 2.3px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+    transform: translate(-2px, 1px);}
+  40%{
+    filter: drop-shadow(2.3px -2.3px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+    transform: translate(1px, -1px);}
+  60%{
+    filter: drop-shadow(-2.3px -2.3px 0px cyan) drop-shadow(2.3px 2.3px 0px magenta);
+    transform: translate(-1px, -1px);}
+  80%{
+    filter: drop-shadow(-2px 2.3px 0px cyan) drop-shadow(-2.3px 2px 0px magenta);
+    transform: translate(2px, 0px);}
+  100%{
+    filter: drop-shadow(-2.3px 1px 0px cyan) drop-shadow(1px -2.3px 0px magenta);
+    transform: translate(1px, 1px);}
+}
