@@ -33,17 +33,15 @@ router.afterEach((to) => {
     const _loading = document.querySelector('#loading')
     if (_loading) {
       // TODO: 模拟个加载时长
-      setTimeout(function() {
-        _loading.classList.remove('animated')
-        _loading.classList.add('animated')
-        _loading.classList.add('fadeOut')
-        _loading.addEventListener('animationend', function() {
-          _loading.remove()
-        })
-        _loading.addEventListener('webkitAnimationEnd', function() {
-          _loading.remove()
-        })
-      }, 1333)
+      _loading.classList.remove('animated')
+      _loading.classList.add('animated')
+      _loading.classList.add('fadeOut')
+      _loading.addEventListener('animationend', function() {
+        _loading.remove()
+      })
+      _loading.addEventListener('webkitAnimationEnd', function() {
+        _loading.remove()
+      })
     }
     loadingStatus = false
   }

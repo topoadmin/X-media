@@ -2,7 +2,7 @@
   <div class="login-wrapper">
     <el-row class="login-body">
       <el-col :span="12" :xs="0" class="left">
-        <div class="left-body">
+        <div class="left-body animated rotateIn">
           <h1>X 媒体直通车</h1>
           <p>直通小视频、VLOG、自媒体、软文、广告牌等各种媒体</p>
         </div>
@@ -98,7 +98,7 @@ $green: #1CE589;
       background: lighten($accent, 16%);
       .left-body {
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 20px;
         transform: translate(0, -50%);
         h1,
