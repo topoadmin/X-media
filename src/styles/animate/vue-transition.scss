@@ -51,3 +51,22 @@
     filter: drop-shadow(-2.3px 1px 0px cyan) drop-shadow(1px -2.3px 0px magenta);
     transform: translate(1px, 1px);}
 }
+
+
+@keyframes heartbeat {
+	0% {
+    transform: scale(1);
+    filter: drop-shadow(2.3px 2.3px 0px ) drop-shadow(-2.3px -2.3px 0px magenta);
+    opacity:1;
+  }
+  25% {
+    transform: scale(1.2);
+    filter: drop-shadow(2.3px -2.3px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+    opacity:0.8;
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(-2.3px 1px 0px cyan) drop-shadow(2.3px -2.3px 0px magenta);
+    opacity:1;
+  }
+}

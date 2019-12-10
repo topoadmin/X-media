@@ -3,8 +3,34 @@ $_: '.x-';
 // 子级分割前缀
 $__: '__';
 
-// ele样式覆盖
-@import './element-ui.scss';
+* {
+  outline: none;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  font-family: Roboto,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  outline:none;
+}
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
 // 工具类函数
 @import './mixin.scss';
 // 动画
@@ -12,23 +38,27 @@ $__: '__';
 // 通用配置
 @import './normalize.scss';
 
-a {
-  text-decoration: none;
-  color: #333;
-}
-
-* {
-  outline: none;
-}
-
-html {
-  font-family: Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
-}
-
+// ele样式覆盖
+@import './element-ui.scss';
 // 默认主题
 @import './theme/index.scss';
+@import './modules/layout.scss';
 
 .block-100 {
   display: block;
   width: 100%;
 }
+
+.media {
+  align-items: flex-start;
+  display: flex;
+  text-align: left;
+}
+
+.media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+}
+

@@ -1,15 +1,18 @@
 <template>
-  <div :class="classObj">
-    <h1>layout</h1>
+  <div class="x-wrapper default">
+    <x-header />
+
+    <div class="x-view-wrapper">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
+import XHeader from './components/Header.vue'
+
 export default {
-  computed: {
-    classObj() {
-      return ['wrapper']
-    }
-  }
+  name: 'Layout',
+  components: { XHeader }
 }
 </script>

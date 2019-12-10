@@ -8,6 +8,10 @@ import router from './router'
 import store from './store'
 import './styles/common.scss'
 
+import './icons' // icon
+
+import '@/directive/waves'
+
 // 引入avue的包
 // import Avue from '@smallwei/avue/lib/index.js'
 // import Avue from '@smallwei/avue'

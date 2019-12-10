@@ -1,12 +1,13 @@
 <!--
 	* @author		Azil
 	* @version 	0.0.1
-	* @title  	异常编码
-	* @route.query
+	* @title  	首页
 -->
 
 <template>
-  <h1>Home</h1>
+  <div>
+    <h1>123123213</h1>
+  </div>
 </template>
 
 <script>
@@ -14,7 +15,3 @@ export default {
   name: 'Home'
 }
 </script>
-
-<style>
-
-</style>

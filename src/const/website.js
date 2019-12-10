@@ -5,7 +5,7 @@
  */
 
 export default {
-  title: 'X-media',
+  title: 'X-Media',
   key: 'X-MEDIA', // 配置主键,目前用于存储
   indexTitle: 'X',
   whiteList: ['/404', '/403', '500'], // 配置无权限可以访问的页面

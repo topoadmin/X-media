@@ -1,0 +1,96 @@
+#{$_}header {
+  display: flex;
+  align-items: stretch;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: $headerZindex;
+  width: 100%;
+  height: $headerHeight;
+  #{$_}navbar-brand {
+    display: flex;
+    align-items: stretch;
+    flex-shrink: 0;
+    height: $headerHeight;
+    margin-left: 0 !important;
+    margin-right: 20px;
+    #{$_}logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: $headerHeight;
+      min-width: $headerHeight;
+      img {
+        max-height: $headerHeight - 18px;
+        max-width: $headerHeight - 18px;
+        animation: heartbeat .5s steps(10, end) infinite;
+      }
+    }
+  }
+  #{$_}navbar {
+    align-items: stretch;
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    &-left,
+    &-right {
+      display: flex;
+      align-items: stretch;
+      margin-right: auto;
+      justify-content: flex-start;
+    }
+    &-right {
+      margin-right: 1.5rem;
+      .user-img {
+        width: $headerHeight - 18px;
+        height: $headerHeight - 18px;
+        border-radius: 50%;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    &-item {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      flex-grow: 0;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      justify-content: center;
+      &-link {
+        width: $headerHeight - 18px;
+        height: $headerHeight - 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        transition: all .3s;
+        i {
+          font-size: $headerHeight - 40px;
+          height: $headerHeight - 40px;
+          line-height: $headerHeight - 40px;
+        }
+      }
+    }
+  }
+}
+.explorer-dialog {
+  top: $headerHeight - 1px;
+  z-index: $headerZindex - 1 !important;
+  overflow-y: scroll;
+  margin-right: -17px;
+  .explorer-menu {
+    .el-drawer__header {
+      display: none;
+    }
+    .explorer-container {
+      max-width: 840px;
+      margin: 0 auto;
+      .icon-list>li {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

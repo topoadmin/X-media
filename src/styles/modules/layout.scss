@@ -1,0 +1,15 @@
+// 头部高度
+$headerHeight: 58px;
+// 头部 zindex
+$headerZindex: 19;
+
+#{$_}wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+#{$_}view-wrapper {
+  padding: $headerHeight + 12px 12px 12px;
+}
+
+@import './header.scss';
