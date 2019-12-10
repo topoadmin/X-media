@@ -2,7 +2,7 @@
   <div class="x-header">
     <div class="x-navbar-brand">
       <a v-waves class="x-logo" href="/">
-        <img src="/img/X.png" alt="">
+        <img src="img/X.png" alt="">
       </a>
     </div>
     <div class="x-navbar">
