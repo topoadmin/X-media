@@ -52,7 +52,7 @@ export const constantRoutes = [
     hidden: true
   }, {
     path: '/',
-    redirect: '/home',
+    redirect: '/login',
     noDropdown: true,
     hidden: true
   }, {

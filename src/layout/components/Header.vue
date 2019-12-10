@@ -14,14 +14,14 @@
             trigger="click">
             <h1>测试</h1>
             <el-badge slot="reference" is-dot>
-              <a v-waves :class="getClassName('message')" @click="handleNavbarItem('message')">
+              <a :class="getClassName('message')" @click="handleNavbarItem('message')">
                 <i class="el-icon-chat-square"/>
               </a>
             </el-badge>
           </el-popover>
         </li>
         <li class="x-navbar-item">
-          <a v-waves :class="getClassName('explorer-menu', 'is-danger')" @click.stop="handleExplorerMenu()">
+          <a :class="getClassName('explorer-menu', 'is-danger')" @click.stop="handleExplorerMenu()">
             <i class="el-icon-s-grid"/>
           </a>
         </li>
@@ -55,7 +55,7 @@
                       </div>
                     </div>
                   </a>
-                  <a class="account-item">
+                  <a v-waves class="account-item" @click="logout()">
                     <div class="media">
                       <div class="icon-wrap">
                         <svg-icon icon-class="logout" />
@@ -132,6 +132,12 @@ export default {
         className += ' is-active'
       }
       return className
+    },
+    logout() {
+      this.$message.success('登出成功')
+      window.setTimeout(() => {
+        this.$router.push('/login')
+      }, 300)
     }
   }
 }
@@ -180,6 +186,9 @@ export default {
       padding: .5rem .75rem;
       display: block;
       line-height: 1.2;
+      &:hover {
+        background: #fafafa;
+      }
       .media {
         align-items: center;
         .icon-wrap {
