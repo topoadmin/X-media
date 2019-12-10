@@ -70,7 +70,7 @@
               </div>
               <el-badge slot="reference" type="success" is-dot>
                 <div v-waves class="user-img">
-                  <img src="/img/azil-orange-ico.png" alt="">
+                  <img src="img/azil-orange-ico.png" alt="">
                 </div>
               </el-badge>
             </el-popover>
