@@ -111,7 +111,6 @@
       v-model="valueCopy"
       :readonly="readonly"
       :disabled="disabled"
-
       :autocomplete="autocomplete"
       :minlength="minlength"
       :maxlength="maxlength"
@@ -143,6 +142,10 @@
 export default {
   name: 'MaterialInput',
   props: {
+    autofocus: {
+      type: Boolean,
+      default: false
+    },
     id: {
       type: String,
       default: null
@@ -240,6 +243,15 @@ export default {
     // Here we are following the Vue2 convention on custom v-model:
     // https://github.com/vuejs/vue/issues/2873#issuecomment-223759341
     this.copyValue(this.value)
+  },
+  mounted() {
+    this.$nextTick(() => {
+      if (this.id && this.autofocus) {
+        setTimeout(() => {
+          document.querySelector('#' + this.id).focus()
+        }, 80)
+      }
+    })
   },
   methods: {
     handleModelInput(event) {

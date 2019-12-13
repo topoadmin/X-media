@@ -1,17 +1,17 @@
 <!--
 	* @author		Azil
 	* @version 	0.0.1
-	* @title  	首页
+	* @title    订单页
 -->
 
 <template>
   <div>
-    <h1>11111111</h1>
+    <h1>订单页</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'OrderIndex'
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="login-wrapper">
+  <div ref="wrapper" class="login-wrapper">
     <el-row class="login-body">
       <el-col :span="12" :xs="0" class="left">
         <div class="left-body">
@@ -21,7 +21,7 @@
           </div>
           <el-form ref="form" :model="form" :rules="rules" autocomplete="off">
             <el-form-item prop="username">
-              <md-input v-model="form.username" name="username" @keyup.enter.native="submitForm">用户名</md-input>
+              <md-input id="username" v-model="form.username" name="username" autofocus @keyup.enter.native="submitForm">用户名</md-input>
             </el-form-item>
             <el-form-item prop="password">
               <md-input v-model="form.password" name="password" type="password" @keyup.enter.native="submitForm">密码</md-input>
@@ -71,12 +71,19 @@ export default {
       }
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.wrapper.click()
+    })
+  },
   methods: {
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.$message.success('登录成功')
-          this.$router.push('/home')
+          this.$store.dispatch('user/setUsername', this.form.username).then(() => {
+            this.$message.success('登录成功')
+            this.$router.push('/home')
+          })
         }
       })
     }

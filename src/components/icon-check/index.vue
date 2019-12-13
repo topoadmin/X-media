@@ -1,6 +1,7 @@
 <template>
   <ul class="icon-list">
     <li
+      v-waves
       v-for="(icon, index) in list"
       :key="index + icon"
       :style="{ 'width': percent + '%' }"

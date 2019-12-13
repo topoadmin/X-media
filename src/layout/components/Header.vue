@@ -1,9 +1,9 @@
 <template>
   <div class="x-header">
     <div class="x-navbar-brand">
-      <a v-waves class="x-logo" href="/">
+      <router-link v-waves class="x-logo" to="/home" tag="span" @click.native="toHome">
         <img src="img/X.png" alt="">
-      </a>
+      </router-link>
     </div>
     <div class="x-navbar">
       <ul class="x-navbar-left">
@@ -11,17 +11,29 @@
           <el-popover
             placement="bottom-start"
             popper-class="x-popover"
-            trigger="click">
-            <h1>测试</h1>
+            trigger="hover">
+            <div class="x-popover-title">
+              <span class="username">
+                <small>通知</small>
+              </span>
+              <router-link to="profile" class="profile">
+                <font>查看全部</font>
+              </router-link>
+            </div>
             <el-badge slot="reference" is-dot>
-              <a :class="getClassName('message')" @click="handleNavbarItem('message')">
-                <i class="el-icon-chat-square"/>
+              <a :class="getClassName('message', 'is-danger')">
+                <i class="el-icon-chat-dot-round"/>
               </a>
             </el-badge>
           </el-popover>
         </li>
         <li class="x-navbar-item">
-          <a :class="getClassName('explorer-menu', 'is-danger')" @click.stop="handleExplorerMenu()">
+          <a :class="getClassName('OrderIndex')" title="订单" @click.stop="handleNavbarItem('OrderIndex')">
+            <i class="el-icon-shopping-cart-full" />
+          </a>
+        </li>
+        <li class="x-navbar-item">
+          <a :class="getClassName('explorer-menu', 'is-danger')" title="快捷菜单" @click.stop="handleExplorerMenu()">
             <i class="el-icon-s-grid"/>
           </a>
         </li>
@@ -32,44 +44,42 @@
             <el-popover
               placement="bottom-start"
               popper-class="x-popover user-popover"
-              trigger="click">
-              <div>
-                <div class="title">
-                  <span class="username">
-                    Azil
-                    <small>超级管理员</small>
-                  </span>
-                  <router-link to="profile" class="profile">
-                    <font>个人资料</font>
-                  </router-link>
-                </div>
-                <div class="account-items">
-                  <a class="account-item">
-                    <div class="media">
-                      <div class="icon-wrap">
-                        <svg-icon icon-class="setting" />
-                      </div>
-                      <div class="media-content">
-                        <h3>Settings</h3>
-                        <small>系统设置</small>
-                      </div>
+              trigger="hover">
+              <div class="x-popover-title">
+                <span class="username">
+                  Azil
+                  <small>超级管理员</small>
+                </span>
+                <router-link to="profile" class="profile">
+                  <font>个人资料</font>
+                </router-link>
+              </div>
+              <div class="account-items">
+                <a v-waves class="account-item">
+                  <div class="media">
+                    <div class="icon-wrap">
+                      <svg-icon icon-class="setting" />
                     </div>
-                  </a>
-                  <a v-waves class="account-item" @click="logout()">
-                    <div class="media">
-                      <div class="icon-wrap">
-                        <svg-icon icon-class="logout" />
-                      </div>
-                      <div class="media-content">
-                        <h3>Log out</h3>
-                        <small>注销当前账户</small>
-                      </div>
+                    <div class="media-content">
+                      <h3>Settings</h3>
+                      <small>系统设置</small>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </a>
+                <a v-waves class="account-item" @click="logout()">
+                  <div class="media">
+                    <div class="icon-wrap">
+                      <svg-icon icon-class="logout" />
+                    </div>
+                    <div class="media-content">
+                      <h3>Log out</h3>
+                      <small>注销当前账户</small>
+                    </div>
+                  </div>
+                </a>
               </div>
               <el-badge slot="reference" type="success" is-dot>
-                <div v-waves class="user-img">
+                <div v-waves class="x-user-img">
                   <img src="img/azil-orange-ico.png" alt="">
                 </div>
               </el-badge>
@@ -78,7 +88,6 @@
         </li>
       </ul>
     </div>
-
     <el-drawer
       :modal="false"
       :visible.sync="explorerMenu"
@@ -100,11 +109,10 @@
 import IconCheck from '@/components/icon-check'
 
 export default {
-  name: 'HeaderLayout',
+  name: 'Header',
   components: { IconCheck },
   data() {
     return {
-      active: 'message',
       explorerMenu: false
     }
   },
@@ -118,23 +126,28 @@ export default {
     }
   },
   methods: {
-    handleNavbarItem(type) {
-      this.active = type
+    toHome() {
       this.explorerMenu = false
     },
+    handleNavbarItem(type) {
+      this.explorerMenu = false
+      if (type === 'OrderIndex') {
+        this.$router.push('/order')
+      }
+    },
     handleExplorerMenu() { // 展开快捷菜单
-      this.active = 'explorer-menu'
       this.explorerMenu = !this.explorerMenu
     },
     getClassName(active, color) { // 获取 class
       let className = 'x-navbar-item-link ' + color
-      if (active === this.active) {
+      if (active === this.$route.name) {
         className += ' is-active'
       }
       return className
     },
     logout() {
       this.$message.success('登出成功')
+      this.$store.dispatch('user/logout')
       window.setTimeout(() => {
         this.$router.push('/login')
       }, 300)
@@ -145,31 +158,7 @@ export default {
 
 <style lang="scss">
 .user-popover {
-  width: 300px;
-  padding: 0;
-  .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .5rem .75rem;
-    border-bottom: 1px solid #e8e8e8;
-    background: #fff;
-    .username {
-      font-size: 1rem;
-      font-weight: 600;
-      small {
-        padding: 0 .5rem;
-        color: #757a91;
-        font-size: .75rem;
-        line-height: 1rem;
-      }
-    }
-    .profile {
-      font-size: .75rem;
-      color: #0058e6;
-      vertical-align: inherit;
-    }
-  }
+  width: 200px;
   .account-items {
     padding: 10px 0;
     max-height: 420px;
@@ -187,7 +176,7 @@ export default {
       display: block;
       line-height: 1.2;
       &:hover {
-        background: #fafafa;
+        background: #f5f5f5;
       }
       .media {
         align-items: center;

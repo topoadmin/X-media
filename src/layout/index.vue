@@ -1,9 +1,10 @@
 <template>
-  <div class="x-wrapper default">
+  <div class="x-main default">
     <x-header />
 
-    <div class="x-view-wrapper">
-      <router-view />
+    <div class="x-wrapper">
+      <router-view name="sidebar" />
+      <router-view class="main-wrapper" />
     </div>
   </div>
 </template>

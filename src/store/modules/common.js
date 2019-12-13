@@ -1,6 +1,6 @@
 /**
- * @author    Gaoshi
- * @version   1.0.1
+ * @author    Azil
+ * @version   0.0.1
  * @title     页面状态管理
  */
 import website from '@/const/website'

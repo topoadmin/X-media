@@ -16,7 +16,8 @@ import Layout from '@/layout'
     title: 'title'               导航和面包屑显示的名称
     icon: 'svg-name'             导航栏显示的图标
     noCache: true                如果设置为true，页面将不会被缓存(默认为false)
-    affix: true                 如果设置为true，则标记将固定在面包屑上
+    affix: true                  如果设置为true，则标记将固定在面包屑上
+    shortcut: true               如果设置为true,就是快捷菜单
   }
  */
 
@@ -52,7 +53,7 @@ export const constantRoutes = [
     hidden: true
   }, {
     path: '/',
-    redirect: '/login',
+    redirect: '/home',
     noDropdown: true,
     hidden: true
   }, {
@@ -94,5 +95,25 @@ export function resetRouter() {
 
 export default router
 
+// 用户页面导航栏
+import sidebar from '@/layout/components/Sidebar'
+
+// 动态权限菜单
 export const asyncRoutes = [
+  {
+    path: '/order',
+    component: Layout,
+    name: 'Order',
+    children: [{
+      path: '/',
+      components: {
+        default: () => import('@/views/order/index'),
+        sidebar
+      },
+      name: 'OrderIndex',
+      meta: {
+        title: '订单页'
+      }
+    }]
+  }
 ]

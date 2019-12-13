@@ -1,4 +1,28 @@
 // eleui 样式覆盖
 #{$_}popover {
-  box-shadow: 0px 5px 43px rgba(0,0,0,0.18) !important;
+  padding: 0;
+  box-shadow: 0px 5px 43px rgba(0,0,0,0.18);
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem .75rem;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fff;
+    .username {
+      font-size: 1rem;
+      font-weight: 600;
+      small {
+        padding: 0 .5rem;
+        color: #757a91;
+        font-size: .75rem;
+        line-height: 1rem;
+      }
+    }
+    .profile {
+      font-size: .75rem;
+      color: #0058e6;
+      vertical-align: inherit;
+    }
+  }
 }

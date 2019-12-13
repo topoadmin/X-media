@@ -1,29 +1,42 @@
-import {
-  validatenull
-} from '@/util/validate'
+/**
+ * @author  				Gaoshi
+ * @version	  		  1.0.0
+ * @title           本地存储控制
+ */
+
+import { validatenull } from '@/utils/validate'
 import website from '@/const/website'
 
 const keyName = website.key + '-'
+
 /**
- * 存储localStorage
- */
+ * @title	存储数据
+ * @param	{Object} params
+ *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
+ *  @key name     存储键
+ *  @key content  存储内容
+ * */
 export const setStore = (params = {}) => {
   const type = params.type
   const content = params.content
   const name = keyName + params.name
   const obj = {
     dataType: typeof (content),
-    content: content,
-    type: type,
+    content,
+    type,
     datetime: new Date().getTime()
   }
   if (type) window.sessionStorage.setItem(name, JSON.stringify(obj))
   else window.localStorage.setItem(name, JSON.stringify(obj))
 }
-/**
- * 获取localStorage
- */
 
+/**
+ * @title	获取数据
+ * @param	{Object} params
+ *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
+ *  @key name     存储键
+ *  @key debug    值为真时，获取原始数据
+ * */
 export const getStore = (params = {}) => {
   const type = params.type
   const name = keyName + params.name
@@ -39,7 +52,6 @@ export const getStore = (params = {}) => {
   try {
     obj = JSON.parse(obj)
   } catch (error) {
-    console.log(error)
     return obj
   }
 
@@ -59,9 +71,13 @@ export const getStore = (params = {}) => {
   }
   return content
 }
+
 /**
- * 删除localStorage
- */
+ * @title	删除
+ * @param	{Object} params
+ *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
+ *  @key name     存储键
+ * */
 export const removeStore = (params = {}) => {
   const type = params.type
   const name = keyName + params.name
@@ -73,8 +89,10 @@ export const removeStore = (params = {}) => {
 }
 
 /**
- * 获取全部localStorage
- */
+ * @title	获取全部
+ * @param	{Object} params
+ *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
+ * */
 export const getAllStore = (params = {}) => {
   const list = []
   const type = params.type
@@ -102,8 +120,10 @@ export const getAllStore = (params = {}) => {
 }
 
 /**
- * 清空全部localStorage
- */
+ * @title	清空全部
+ * @param	{Object} params
+ *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
+ * */
 export const clearStore = (params = {}) => {
   const type = params.type
   if (type) {

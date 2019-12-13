@@ -1,3 +1,5 @@
+// 通用配置
+@import './normalize.scss';
 // 顶级前缀
 $_: '.x-';
 // 子级分割前缀
@@ -35,8 +37,6 @@ html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, tex
 @import './mixin.scss';
 // 动画
 @import './animate/vue-transition.scss';
-// 通用配置
-@import './normalize.scss';
 
 // ele样式覆盖
 @import './element-ui.scss';

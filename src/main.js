@@ -21,10 +21,11 @@ import '@/directive/waves'
 
 // Vue.use(Avue, { menuType: 'text' })
 
-Vue.use(router)
+Vue.config.devtools = true
 
 Vue.config.productionTip = false
 
+Vue.use(router)
 new Vue({
   router,
   store,
