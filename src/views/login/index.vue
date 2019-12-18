@@ -43,12 +43,10 @@ export default {
   components: { MdInput },
   data() {
     return {
-      universeKey: +new Date(),
-      list: [1, 2, 3],
       loading: false,
       form: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin123456'
       },
       rules: {
         username: [
