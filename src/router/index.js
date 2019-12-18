@@ -13,7 +13,7 @@ import Layout from '@/layout'
     title: 'title'               导航和面包屑显示的名称
     icon: 'svg-name'             导航栏显示的图标
     redirect: false              如果设置 redirect 无法缓存当前路由，需要自行处理
-    noCache: false               如果设置为true，页面将不会被缓存(默认为false)
+    noCache: false               如果设置为true，页面将不会被缓存(默认为false)，TODO: 如果存在 redirect 则失效，vue-router 问题
     shortcut: false              如果设置为true,就是快捷菜单
     actionMenu: 'menu'           高亮导航（比 name 优先级高）
     parentNoCache: false         设置 true 不开启父级路由缓存, 目前依赖 actionMenu（TODO: 父级开启了 redirect 就必须设置， 否则父级无法被缓存，因为开启 redirect $route 监听不到进入了父级路由）
@@ -133,6 +133,7 @@ export const asyncRoutes = [
         name: 'MediaListBaijiahao',
         meta: {
           title: '百家号资源',
+          noCache: true,
           activeMenu: 'MediaList'
         }
       }, {
@@ -182,10 +183,39 @@ export const asyncRoutes = [
         default: () => import('@/views/order/list'),
         sidebar
       },
+      redirect: '/order/list/toutiao',
       name: 'OrderList',
       meta: {
         title: '我的稿件'
-      }
+      },
+      children: [{ // 三级路由测试
+        path: 'toutiao',
+        component: () => import('@/views/order/list/toutiao'),
+        name: 'OrderListToutiao',
+        meta: {
+          title: '头条稿件',
+          activeMenu: 'OrderList',
+          parentNoCache: true
+        }
+      }, {
+        path: 'baijiahao',
+        component: () => import('@/views/order/list/baijiahao'),
+        name: 'OrderListBaijiahao',
+        meta: {
+          title: '百家号稿件',
+          activeMenu: 'OrderList',
+          parentNoCache: true
+        }
+      }, {
+        path: 'weibo',
+        component: () => import('@/views/order/list/weibo'),
+        name: 'OrderListWeibo',
+        meta: {
+          title: '微博稿件',
+          activeMenu: 'OrderList',
+          parentNoCache: true
+        }
+      }]
     }, {
       path: 'work',
       components: {

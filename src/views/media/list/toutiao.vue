@@ -6,7 +6,7 @@
 
 <template>
   <div>
-    <h1>头条测试缓存</h1>
+    <h1>MediaListToutiao 头条测试缓存</h1>
     <el-input v-model="input" placeholder="输入内容" />
   </div>
 </template>

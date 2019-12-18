@@ -6,14 +6,14 @@
 
 <template>
   <div>
-    <h1>MediaListBaijiahao 百家号测试缓存</h1>
+    <h1>OrderListWeibo 微博稿件测试缓存</h1>
     <el-input v-model="input" placeholder="输入内容" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MediaListBaijiahao',
+  name: 'OrderListWeibo',
   data() {
     return {
       input: ''
@@ -21,3 +21,4 @@ export default {
   }
 }
 </script>
+
