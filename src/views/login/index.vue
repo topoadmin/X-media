@@ -80,7 +80,7 @@ export default {
         if (valid) {
           this.$store.dispatch('user/setUsername', this.form.username).then(() => {
             this.$message.success('登录成功')
-            this.$router.push('/home')
+            this.$router.push('/')
           })
         }
       })
