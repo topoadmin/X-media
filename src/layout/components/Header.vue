@@ -1,17 +1,14 @@
 <template>
   <div class="x-header">
     <div class="x-navbar-brand">
-      <router-link v-waves class="x-logo" to="/home" tag="span" @click.native="toHome">
+      <router-link v-waves title="首页" class="x-logo" to="/home" tag="span" @click.native="toHome">
         <img src="img/X.png" alt="">
       </router-link>
     </div>
     <div class="x-navbar">
       <ul class="x-navbar-left">
         <li class="x-navbar-item">
-          <el-popover
-            placement="bottom-start"
-            popper-class="x-popover"
-            trigger="hover">
+          <el-popover placement="bottom-start" popper-class="x-popover" trigger="hover">
             <div class="x-popover-title">
               <span class="username">
                 <small>通知</small>
@@ -21,19 +18,19 @@
               </router-link>
             </div>
             <el-badge slot="reference" is-dot>
-              <a :class="getClassName('message', 'is-danger')">
+              <a :class="{ 'is-active': active === 'message' }" class="x-navbar-item-link is-danger">
                 <i class="el-icon-chat-dot-round"/>
               </a>
             </el-badge>
           </el-popover>
         </li>
         <li class="x-navbar-item">
-          <a :class="getClassName('OrderIndex')" title="订单" @click.stop="handleNavbarItem('OrderIndex')">
-            <i class="el-icon-shopping-cart-full" />
+          <a :class="{ 'is-active': active === 'manage' }" class="x-navbar-item-link" title="管理中心" @click="handleManage('/media')">
+            <svg-icon icon-class="dashboard" />
           </a>
         </li>
         <li class="x-navbar-item">
-          <a :class="getClassName('explorer-menu', 'is-danger')" title="快捷菜单" @click.stop="handleExplorerMenu()">
+          <a :class="{ 'is-active': explorerMenu }" class="x-navbar-item-link is-danger" title="快捷菜单" @click.stop="handleExplorerMenu()">
             <i class="el-icon-s-grid"/>
           </a>
         </li>
@@ -78,11 +75,9 @@
                   </div>
                 </a>
               </div>
-              <el-badge slot="reference" type="success" is-dot>
-                <div v-waves class="x-user-img">
-                  <img src="img/azil-orange-ico.png" alt="">
-                </div>
-              </el-badge>
+              <div v-waves slot="reference" class="x-user-img">
+                <img src="img/azil-orange-ico.png" alt="">
+              </div>
             </el-popover>
           </div>
         </li>
@@ -99,20 +94,18 @@
         <div class="explorer-header">
           <h1>快捷菜单</h1>
         </div>
-        <icon-check :size="5" />
       </div>
     </el-drawer>
   </div>
 </template>
 
 <script>
-import IconCheck from '@/components/icon-check'
 
 export default {
   name: 'Header',
-  components: { IconCheck },
   data() {
     return {
+      active: null,
       explorerMenu: false
     }
   },
@@ -127,23 +120,16 @@ export default {
   },
   methods: {
     toHome() {
+      this.active = null
       this.explorerMenu = false
     },
-    handleNavbarItem(type) {
+    handleManage(path) {
+      this.active = 'manage'
       this.explorerMenu = false
-      if (type === 'OrderIndex') {
-        this.$router.push('/order')
-      }
+      path && this.$router.push(path)
     },
     handleExplorerMenu() { // 展开快捷菜单
       this.explorerMenu = !this.explorerMenu
-    },
-    getClassName(active, color) { // 获取 class
-      let className = 'x-navbar-item-link ' + color
-      if (active === this.$route.name) {
-        className += ' is-active'
-      }
-      return className
     },
     logout() {
       this.$message.success('登出成功')

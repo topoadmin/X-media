@@ -1,5 +1,5 @@
 /**
- * @author  				Gaoshi
+ * @author  				Azil
  * @version	  		  1.0.0
  * @title           本地存储控制
  */

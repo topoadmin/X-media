@@ -10,23 +10,13 @@ NProgress.configure({ showSpinner: false })
 router.beforeEach(async(to, from, next) => {
   NProgress.start()
   if (store.getters.username) { // 判断是否登录
-    // 判断路由是否已经生成
-    const addRoutes = store.getters.addRoutes
-    const hasRoutes = addRoutes && addRoutes.length > 0
-    if (hasRoutes) { // 已生成，直接跳转
+    if (!store.getters.leftMenu.length) { // 生成用户权限菜单
+      const leftMenu = await store.dispatch('user/getLeftMenu')
+      router.addRoutes(await store.dispatch('permission/generateRoutes', leftMenu))
+      next({ ...to })
+    } else {
       next()
-    } else { // 动态添加可访问路由表
-      try {
-        // console.log(await store.dispatch('permission/generateRoutes'))
-        router.addRoutes(await store.dispatch('permission/generateRoutes'))
-        console.log(to)
-        next({ ...to })
-      } catch (error) {
-        console.log(`生成导航失败：${error}`)
-        next({ path: '/404' })
-      }
     }
-    // next()
   } else {
     if (website.whiteList.indexOf(to.path) !== -1) {
       next()

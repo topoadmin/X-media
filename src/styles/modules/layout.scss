@@ -15,24 +15,21 @@ $leftSidebarWidth: 250px;
 
 #{$_}wrapper {
   padding: $headerHeight 0 0;
-  .left-sidebar {
+  #{$_}left-sidebar {
     height: calc(100% - #{$headerHeight});
     position: fixed;
     top: $headerHeight + 1px;
     left: 0;
     width: $leftSidebarWidth;
-    height: 100%;
-    background: #fafafa;
-    border-right: 1px solid #e8e8e8;
     transform: translateX(-100%);
     z-index: 10;
     transition: all .3s;
     .user-block {
       position: relative;
       margin: 20px 20px 0;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #dedede;
       text-align: center;
+      height: 210px;
+      overflow: hidden;
       .avatar-wrap {
         position: relative;
         display: flex;
@@ -40,7 +37,6 @@ $leftSidebarWidth: 250px;
         align-items: center;
         width: 70px;
         height: 70px;
-        border: 1.4px solid #d8d8d8;
         border-radius: 50%;
         margin: 0 auto 6px auto;
         img {
@@ -52,16 +48,14 @@ $leftSidebarWidth: 250px;
       }
   
       h4 {
-        font-family: 'Montserrat', sans-serif;
+        // font-family: 'Montserrat', sans-serif;
         font-weight: 700;
         font-size: .9rem;
         line-height: 1.4rem;
-        color: #393a4f;
       }
       p {
         font-size: .8rem;
         line-height: 1.4rem;
-        color: #999;
       }
   
       .user-stats {
@@ -99,16 +93,9 @@ $leftSidebarWidth: 250px;
         align-items: center;
         justify-content: center;
         transition: all .3s;
-        &:hover {
-          background: #fff;
-          svg {
-            stroke: #393a4f;
-          }
-        }
         svg {
           height: 32px;
           width: 32px;
-          color: #999;
           transition: stroke .3s;
         }
       }
@@ -120,13 +107,24 @@ $leftSidebarWidth: 250px;
       }
   
     }
+    .user-menu {
+      height: calc(100% - 250px);
+      .el-scrollbar {
+        height: 100%;
+        .el-scrollbar__wrap{
+          overflow-x: hidden;
+        }
+      }
+    }
     &.is-active {
       transform: translateX(0);
     }
   }
 
-  .main-wrapper {
+  #{$_}main-wrapper {
     margin-left: $leftSidebarWidth;
-    background: #fff;
+    #{$_}one-router-view {
+      padding: 30px;
+    }
   }
 }

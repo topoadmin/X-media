@@ -4,9 +4,10 @@
  * @title     用户状态管理
  */
 import { setStore, getStore, removeStore } from '@/utils/store'
-
+import { asyncRoutes } from '@/router'
 const state = {
-  username: getStore({ name: 'username' })
+  username: getStore({ name: 'username' }),
+  leftMenu: []
 }
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
       name: 'username',
       content: username
     })
+  },
+  SET_LEFT_MENU: (state, leftMenu) => {
+    state.leftMenu = leftMenu
   }
 }
 
@@ -25,6 +29,12 @@ const actions = {
   },
   logout: ({ commit }) => {
     removeStore({ name: 'username' })
+  },
+  getLeftMenu: ({ commit }) => { // 获取权限菜单
+    return new Promise(resolve => {
+      commit('SET_LEFT_MENU', asyncRoutes)
+      resolve(asyncRoutes)
+    })
   }
 }
 

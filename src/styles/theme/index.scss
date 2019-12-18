@@ -1,25 +1,68 @@
 // 默认主题
+$borderColor: rgba(0,0,0,0.12);
+
 #{$_}main.default {
   // background: #f9f9f9; // 油管配色
   // background: #f0f2f5; // 脸书配色
   #{$_}header {
     background: #fff;
-    box-shadow: 0 0 8px 0 rgba(0,0,0,0.12);
-    border-bottom: 1px solid #e8e8e8;
+    box-shadow: 0 0 8px 0 $borderColor;
+    // border-bottom: 1px solid #e8e8e8;
     #{$_}navbar-left #{$_}navbar-item-link{
       color: #999;
       &.is-active,
       &:hover {
         color: #fff;
         background: #1a72ff;
-        box-shadow: 0 14px 26px -12px rgba(0,98,255,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,98,255,0.2) !important;
+        box-shadow: 0 14px 26px -12px rgba(0,98,255,0.42),0 4px 23px 0px $borderColor,0 8px 10px -5px rgba(0,98,255,0.2) !important;
       }
       &.is-active.is-danger,
       &.is-danger:hover {
         color: #fff;
         background: #ff5f59;
-        box-shadow: 0 14px 26px -12px rgba(255,95,89,0.42),0 4px 23px 0px rgba(0,0,0,0.12),0 8px 10px -5px rgba(255,95,89,0.2) !important;
+        box-shadow: 0 14px 26px -12px rgba(255,95,89,0.42),0 4px 23px 0px $borderColor,0 8px 10px -5px rgba(255,95,89,0.2) !important;
       }
+    }
+  }
+
+  #{$_}wrapper {
+    #{$_}left-sidebar {
+      // border-right: 1px solid #e8e8e8;
+      box-shadow: 0 0 8px 0 $borderColor;
+      .user-block {
+        border-bottom: 1px solid $borderColor;
+        .avatar-wrap {
+          border: 1.4px solid $borderColor;
+        }
+        h4 {
+          color: #393a4f;
+        }
+        p {
+          color: #999;
+        }
+        .user-stats {
+          .stat-block {
+            span:last-child {
+              color: #999;
+            }
+          }
+        }
+
+        .close-videos-sidebar {
+          &:hover {
+            background: #fff;
+            svg {
+              stroke: #393a4f;
+            }
+          }
+          svg {
+            color: #999;
+          }
+        }
+      }
+    }
+    #{$_}main-wrapper {
+      background: #fff;
     }
   }
 }
