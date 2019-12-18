@@ -36,33 +36,18 @@
 
 <script>
 import XNote from '@/components/XNote'
+import threeCachedViewMixin from '@/mixin/threeCachedView'
 
 export default {
   name: 'MediaList',
   components: {
     XNote
   },
+  mixins: [threeCachedViewMixin],
   data() {
     return {
-      activePath: '/media/list/toutiao',
-      cachedViews: []
+      activePath: '/media/list/toutiao'
     }
-  },
-  watch: {
-    $route() {
-      this.updateCachedView()
-    }
-  },
-  created() {
-    const { meta } = this.$route
-    if (meta && meta.activeMenu && !meta.parentNoCache) { // 自行处理添加二级路由的缓存
-      this.$store.dispatch('common/addTwoCachedView', {
-        name: meta.activeMenu,
-        meta: { noCache: meta.parentNoCache }
-      })
-    }
-    this.updateCachedView()
-    // this.$alert('【资源中心】与【我的稿件】内分布实现了两种不同的路由缓存效果哦', '温馨提示', { type: 'warning' })
   },
   activated() {
     this.activePath && this.$router.replace(this.activePath)
@@ -70,16 +55,6 @@ export default {
   methods: {
     to(value) {
       this.$router.push(value)
-    },
-    updateCachedView() {
-      const { name, meta, path } = this.$route
-      // TODO: 由于判断了必须是三级路由，所有某些参数的传递形式可能会发生错误，建议使用 ?v=1 此形式传递参数
-      if (meta && !meta.noCache && path.split('').filter(p => p === '/').length === 3) {
-        const findCv = this.cachedViews.find(item => item === name)
-        if (!findCv) {
-          this.cachedViews.push(name)
-        }
-      }
     }
   }
 }
