@@ -1,33 +1,215 @@
 /**
- * @param {string} path
- * @returns {Boolean}
+ * @author  				Azil
+ * @version	  		  1.0.0
+ * @title           输入数据验证
  */
+
+// 是否为超链接
+/**
+ * @title	生成随机 len 位数字
+ * @param {Number} len 长度
+ * @param {Date} date 时间
+ * @return {Number}
+ * */
 export function isExternal(path) {
-  return /^(https?:|mailto:|tel:)/.test(path)
+  return /^(http?:|https?:|mailto:|tel:)/.test(path)
 }
 
-/**
- * 邮箱
- * @param {*} s
- */
-export function isEmail(s) {
-  return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(s)
+// 是否包含特殊字符
+export function vEspecial(str) {
+  var reg = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\]<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
+  return reg.test(str)
 }
 
-/**
- * 手机号码
- * @param {*} s
- */
-export function isMobile(s) {
-  return /^1[0-9]{10}$/.test(s)
+// 是否包含特殊字符（elementUI版本）
+export function validateEspecial(rule, value, callback) {
+  if (typeof value !== 'object' && !value.trim()) { // 为空
+    return callback(new Error('输入内容不能空'))
+  }
+  let status = false
+  value.split('').forEach(item => {
+    if (vEspecial(item)) {
+      status = true
+    }
+  })
+  if (status) {
+    callback(new Error(rule.message || '输入内容不能包含特殊字符'))
+  } else {
+    callback()
+  }
 }
 
-/**
- * 电话号码
- * @param {*} s
- */
-export function isPhone(s) {
-  return /^([0-9]{3,4}-)?[0-9]{7,8}$/.test(s)
+// 验证端口
+export function vPort(port) {
+  return port >= 10 && port <= 65535
+}
+
+// 验证端口（elementUI 版本）
+export function validatePort(rule, value, callback) {
+  const required = rule.required || false
+  if (required) {
+    if (!value.trim()) {
+      return callback('端口不能为空')
+    }
+    if (!validateNumber(value)) {
+      return callback(new Error('端口只能为数字'))
+    }
+    if (vPort(value)) {
+      callback()
+    } else {
+      return callback(new Error(rule.message || '请输入正确的端口地址格式'))
+    }
+  } else {
+    callback()
+  }
+}
+
+// 合法uri
+export function validateURL(str) {
+  const reg = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
+  return str ? reg.test(str) : false
+}
+
+// 数字类型
+export function validateNumber(str) {
+  const reg = /^\d+$/
+  return str ? reg.test(str) : false
+}
+
+// 小写字母
+export function validateLowerCase(str) {
+  const reg = /^[a-z]+$/
+  return str ? reg.test(str) : false
+}
+
+// 大写字母
+export function validateUpperCase(str) {
+  const reg = /^[A-Z]+$/
+  return str ? reg.test(str) : false
+}
+
+// 大小写字母
+export function validatAlphabets(str) {
+  const reg = /^[A-Za-z]+$/
+  return str ? reg.test(str) : false
+}
+
+// 验证下拉框值为 Object
+export function validateSelectObject(rule, value, callback) {
+  const keys = Object.keys(value)
+  if (!keys.length) {
+    return callback(new Error(rule.message || '至少选择一项'))
+  } else {
+    callback()
+  }
+}
+
+// 验证ip
+export function vIp(ip) {
+  const exp = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+  return ip ? ip.match(exp) != null : false
+}
+
+// 验证ip（elementUI版本）
+export function validateIP(rule, value, callback) {
+  const required = rule.required || false
+  if (required) {
+    if (!value.trim()) {
+      return callback(new Error('IP 不能为空'))
+    } else {
+      if (vIp(value)) {
+        callback()
+      } else {
+        return callback(new Error('请输入正确的 IP 地址格式'))
+      }
+    }
+  } else {
+    callback()
+  }
+}
+
+// 验证email
+export function vEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return email ? re.test(email) : false
+}
+
+// 验证email（elementUI版本）
+export function validateEmail(rule, value, callback) {
+  const required = rule.required || false
+  if (required) {
+    if (!value.trim()) {
+      return callback(new Error('邮箱地址不能为空'))
+    } else {
+      if (vEmail(value)) {
+        callback()
+      } else {
+        return callback(new Error('请输入正确的邮箱地址'))
+      }
+    }
+  } else {
+    callback()
+  }
+}
+
+// 验证多邮箱输入
+export function validateMoreEmail(rule, value, callback) {
+  const required = rule.required || false
+  if (required) {
+    if (!value.trim()) {
+      return callback(new Error('邮箱地址不能为空'))
+    }
+    let error = false
+    value.split('\n').forEach(item => {
+      if (!vEmail(item)) {
+        error = true
+      }
+    })
+    if (error) {
+      return callback(new Error('请输入正确的邮箱地址'))
+    } else {
+      callback()
+    }
+  } else {
+    callback()
+  }
+}
+
+// 验证密码强度
+export function vPassword(value) {
+  let modes = 0
+  if (value.length < 8) return 0
+  // 数字
+  if (/\d/.test(value)) modes++
+  // 小写
+  if (/[a-z]/.test(value)) modes++
+  // 大写
+  if (/[A-Z]/.test(value)) modes++
+  // 特殊字符
+  if (/\W/.test(value)) modes++
+  return modes
+}
+
+// 验证密码强度（elementUI版本）
+export function validatePassword(rule, value, callback) {
+  const required = rule.required || false
+  if (required) {
+    if (!value.trim()) {
+      return callback(new Error('密码不能为空'))
+    }
+    if (value === rule.defaultValue) {
+      callback()
+    } else {
+      const modes = vPassword(value)
+      if (modes > 2) {
+        callback()
+      } else {
+        return callback(new Error('密码强度不够'))
+      }
+    }
+  } else {
+    callback()
+  }
 }
 
 /**
@@ -36,233 +218,6 @@ export function isPhone(s) {
  */
 export function isURL(s) {
   return /^http[s]?:\/\/.*/.test(s)
-}
-
-/**
- * 获取参数
- * @param url 传递域名
- * @param key 需要获取的参数
- * @return string
- * @demo getUrlParam(null,"key")
- * @demo getUrlParam(xx.com?id=1&name=22,"id")
- */
-export function getUrlParam(url, key) {
-  var newUrl = url || window.location
-  newUrl = decodeURI(newUrl)
-  var params = {}
-  var arr = newUrl.split('?')
-  if (arr.length <= 1) {
-    return false
-  }
-  arr = arr[1].split('&')
-  for (var i = 0, l = arr.length; i < l; i++) {
-    var a = arr[i].split('=')
-    params[a[0]] = a[1]
-  }
-  return key ? params[key] : params
-}
-
-export function isvalidUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
-}
-
-/* 合法uri */
-export function validateURL(textval) {
-  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
-  return urlregex.test(textval)
-}
-
-/* 小写字母 */
-export function validateLowerCase(str) {
-  const reg = /^[a-z]+$/
-  return reg.test(str)
-}
-
-/* 大写字母 */
-export function validateUpperCase(str) {
-  const reg = /^[A-Z]+$/
-  return reg.test(str)
-}
-
-/* 大小写字母 */
-export function validatAlphabets(str) {
-  const reg = /^[A-Za-z]+$/
-  return reg.test(str)
-}
-
-/* 验证pad还是pc */
-export const vaildatePc = function() {
-  const userAgentInfo = navigator.userAgent
-  const Agents = ['Android', 'iPhone',
-    'SymbianOS', 'Windows Phone',
-    'iPad', 'iPod'
-  ]
-  let flag = true
-  for (var v = 0; v < Agents.length; v++) {
-    if (userAgentInfo.indexOf(Agents[v]) > 0) {
-      flag = false
-      break
-    }
-  }
-  return flag
-}
-
-/**
- * validate email
- * @param email
- * @returns {boolean}
- */
-export function validateEmail(email) {
-  const re = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(email)
-}
-
-/**
- * 判断身份证号码
- */
-export function cardid(code) {
-  const list = []
-  let result = true
-  let msg = ''
-  var city = {
-    11: '北京',
-    12: '天津',
-    13: '河北',
-    14: '山西',
-    15: '内蒙古',
-    21: '辽宁',
-    22: '吉林',
-    23: '黑龙江 ',
-    31: '上海',
-    32: '江苏',
-    33: '浙江',
-    34: '安徽',
-    35: '福建',
-    36: '江西',
-    37: '山东',
-    41: '河南',
-    42: '湖北 ',
-    43: '湖南',
-    44: '广东',
-    45: '广西',
-    46: '海南',
-    50: '重庆',
-    51: '四川',
-    52: '贵州',
-    53: '云南',
-    54: '西藏 ',
-    61: '陕西',
-    62: '甘肃',
-    63: '青海',
-    64: '宁夏',
-    65: '新疆',
-    71: '台湾',
-    81: '香港',
-    82: '澳门',
-    91: '国外 '
-  }
-  if (!validatenull(code)) {
-    if (code.length === 18) {
-      if (!code || !/(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(code)) {
-        msg = '证件号码格式错误'
-      } else if (!city[code.substr(0, 2)]) {
-        msg = '地址编码错误'
-      } else {
-        // 18位身份证需要验证最后一位校验位
-        code = code.split('')
-        // ∑(ai×Wi)(mod 11)
-        // 加权因子
-        var factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
-        // 校验位
-        var parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2, 'x']
-        var sum = 0
-        var ai = 0
-        var wi = 0
-        for (var i = 0; i < 17; i++) {
-          ai = code[i]
-          wi = factor[i]
-          sum += ai * wi
-        }
-        if (parity[sum % 11] !== code[17]) {
-          msg = '证件号码校验位错误'
-        } else {
-          result = false
-        }
-      }
-    } else {
-      msg = '证件号码长度不为18位'
-    }
-  } else {
-    msg = '证件号码不能为空'
-  }
-  list.push(result)
-  list.push(msg)
-  return list
-}
-
-/**
- * 判断手机号码是否正确
- */
-export function isvalidatemobile(phone) {
-  const list = []
-  let result = true
-  let msg = ''
-  var isPhone = /^0\d{2,3}-?\d{7,8}$/
-  // 增加134 减少|1349[0-9]{7}，增加181,增加145，增加17[678]
-  if (!validatenull(phone)) {
-    if (phone.length === 11) {
-      if (isPhone.test(phone)) {
-        msg = '手机号码格式不正确'
-      } else {
-        result = false
-      }
-    } else {
-      msg = '手机号码长度不为11位'
-    }
-  } else {
-    msg = '手机号码不能为空'
-  }
-  list.push(result)
-  list.push(msg)
-  return list
-}
-
-/**
- * 判断姓名是否正确
- */
-export function validatename(name) {
-  var regName = /^[\u4e00-\u9fa5]{2,4}$/
-  if (!regName.test(name)) return false
-  return true
-}
-
-/**
- * 判断是否为整数
- */
-export function validatenum(num, type) {
-  let regName = /[^\d.]/g
-  if (type === 1) {
-    if (!regName.test(num)) return false
-  } else if (type === 2) {
-    regName = /[^\d]/g
-    if (!regName.test(num)) return false
-  }
-  return true
-}
-
-/**
- * 判断是否为小数
- */
-export function validatenumord(num, type) {
-  let regName = /[^\d.]/g
-  if (type === 1) {
-    if (!regName.test(num)) return false
-  } else if (type === 2) {
-    regName = /[^\d.]/g
-    if (!regName.test(num)) return false
-  }
-  return true
 }
 
 /**

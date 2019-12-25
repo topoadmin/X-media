@@ -122,7 +122,9 @@ $leftSidebarWidth: 250px;
   }
 
   #{$_}main-wrapper {
-    margin-left: $leftSidebarWidth;
+    &.right {
+      margin-left: $leftSidebarWidth;
+    }
     #{$_}one-router-view {
       padding: 30px;
     }

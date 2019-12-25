@@ -9,10 +9,14 @@ const state = {
   appKey: Date.now(),
   website: website,
   selfTop: window.self === window.top,
+  mainLoading: false,
   twoCachedViews: [] // 二级路由缓存
 }
 
 const mutations = {
+  SET_MAIN_LOADING: (state, loading) => {
+    state.mainLoading = loading
+  },
   RELOAD_APP: state => {
     state.appKey = 'APP-' + Date.now()
   },
@@ -37,6 +41,9 @@ const mutations = {
 }
 
 const actions = {
+  setMainLoading: ({ commit }, loading) => {
+    commit('SET_MAIN_LOADING', loading)
+  },
   reloadApp: ({ commit }) => {
     commit('RELOAD_APP')
   },

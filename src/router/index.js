@@ -52,7 +52,7 @@ export const constantRoutes = [
     hidden: true
   }, {
     path: '/',
-    redirect: '/media',
+    redirect: '/home',
     noDropdown: true,
     hidden: true
   }, {

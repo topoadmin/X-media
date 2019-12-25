@@ -25,7 +25,7 @@
           </el-popover>
         </li>
         <li class="x-navbar-item">
-          <a :class="{ 'is-active': active === 'manage' }" class="x-navbar-item-link" title="管理中心" @click="handleManage('/media')">
+          <a :class="{ 'is-active': active === 'manage' }" class="x-navbar-item-link" title="产品中心" @click="handleManage('/media')">
             <svg-icon icon-class="dashboard" />
           </a>
         </li>
@@ -100,12 +100,12 @@
 </template>
 
 <script>
-
+const nullActives = ['HomeIndex'] // 不显示导航焦点的路由
 export default {
   name: 'Header',
   data() {
     return {
-      active: null,
+      active: 'manage',
       explorerMenu: false
     }
   },
@@ -116,6 +116,11 @@ export default {
       } else {
         document.body.style.overflow = ''
       }
+    }
+  },
+  created() {
+    if (nullActives.includes(this.$route.name)) {
+      this.active = ''
     }
   },
   methods: {

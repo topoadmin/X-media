@@ -12,18 +12,14 @@ import './icons' // icon
 
 import '@/directive/waves'
 
-// 引入avue的包
-// import Avue from '@smallwei/avue/lib/index.js'
-// import Avue from '@smallwei/avue'
-// 引入avue的样式文件
-
-// Vue.prototype.$ELEMENT = { size: 'small' }
-
-// Vue.use(Avue, { menuType: 'text' })
-
 Vue.config.devtools = true
 
 Vue.config.productionTip = false
+
+import { mockXHR } from '../mock'
+if (process.env.NODE_ENV === 'production') {
+  mockXHR()
+}
 
 Vue.use(router)
 new Vue({

@@ -3,7 +3,9 @@
     <div class="error404-body-con">
       <el-card class="box-card">
         <div class="error404-body-con-title">4
-        <span>0</span>4</div>
+          <span>0</span>
+          4
+        </div>
         <p class="error404-body-con-message">未找到该页面</p>
         <div class="error404-btn-con">
           <el-button size="large" style="width: 200px;" type="text" @click="goHome">返回首页</el-button>

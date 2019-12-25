@@ -9,10 +9,6 @@ import website from '@/const/website.js'
 
 export default {
   name: 'App',
-  data() {
-    return {
-    }
-  },
   created() {
     document.title = website.title
   }
