@@ -1,5 +1,5 @@
 /**
- * @author          Gaoshi
+ * @author          Azil
  * @version	  		  1.0.0
  * @title           Axios 请求的各种处理
  */
@@ -75,22 +75,6 @@ export const interceptorsRequest = (config) => {
     let requestUrl
     if (customParams.repeatParams) { // 不同参数认为是同一请求，但是 repeat 与 closeRepeat 不会互相影响
       requestUrl = configUrl.split('?')[0] + '&' + config.method + '&myRepeatParams'
-      // if (customParams.repeat) { // 不允许发起重复请求
-      // const findEqualityRequest = httpRecord.find(item => {
-      //   return item.requestUrl === requestUrl
-      // })
-      // if (findEqualityRequest) {
-      //   reject(new Error('my-auto-close:no-repeat'))
-      //   return
-      // }
-      // } else if (customParams.closeRepeat) { // 关闭历史请求
-      // requestUrl = configUrl.split('?')[0] + '&' + config.method + '&repeatParams'
-      // inPathDelete(requestUrl)
-      // setTimeout(() => {
-      //   // TODO: 调用 axios.cacel 的关闭为异步操作，interceptors 内的 error 钩子比此处执行慢，进度条会被关闭
-      //   NProgress.start()
-      // }, 0)
-      // }
     } else {
       requestUrl = configUrl + '&' + config.method
       if (customParams.repeat) {
