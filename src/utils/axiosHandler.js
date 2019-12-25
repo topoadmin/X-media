@@ -40,7 +40,7 @@ export const inPathDelete = (requestUrl, match = false) => {
     }
     return item
   })
-  window.httpRecord = httpRecord
+  // window.httpRecord = httpRecord
 }
 
 function NoRepeat() {

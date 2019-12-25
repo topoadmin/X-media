@@ -3,11 +3,13 @@ import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import website from '@/const/website'
 import store from '@/store'
-// import { getStore } from '@/utils/store'
+import { routerBeforeEach } from '@/utils/axiosHandler'
 
 NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async(to, from, next) => {
+  routerBeforeEach()
+
   NProgress.start()
   if (store.getters.username) { // 判断是否登录
     if (!store.getters.leftMenu.length) { // 生成用户权限菜单
