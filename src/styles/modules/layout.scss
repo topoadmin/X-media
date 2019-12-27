@@ -28,7 +28,6 @@ $leftSidebarWidth: 250px;
       position: relative;
       margin: 20px 20px 0;
       text-align: center;
-      height: 210px;
       overflow: hidden;
       .avatar-wrap {
         position: relative;
@@ -62,7 +61,7 @@ $leftSidebarWidth: 250px;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 20px 0;
+        padding: 10px 0;
         .stat-block {
           text-align: center;
           line-height: 1.4rem;
@@ -108,7 +107,7 @@ $leftSidebarWidth: 250px;
   
     }
     .user-menu {
-      height: calc(100% - 250px);
+      height: calc(100% - 215px);
       .el-scrollbar {
         height: 100%;
         .el-scrollbar__wrap{
@@ -125,7 +124,7 @@ $leftSidebarWidth: 250px;
     &.right {
       margin-left: $leftSidebarWidth;
     }
-    #{$_}one-router-view {
+    #{$_}two-router-view {
       padding: 30px;
     }
   }

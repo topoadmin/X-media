@@ -49,21 +49,27 @@ export default {
 
 <style lang="scss">
   .menu-item {
+    &:last-child {
+      ul {
+        border-bottom: none;
+      }
+    }
     ul {
       margin: 0 20px;
-      padding: 20px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #dedede;
     }
     .title,
     .item {
       display: flex;
       align-items: center;
-      padding: 10px 40px;
+      padding: 10px 20px;
       border-left: 4px solid transparent;
       font-size: 1rem;
+      line-height: 1;
       svg {
-        height: .8rem;
-        width: .8rem;
+        height: 2rem;
+        width: 2rem;
         margin-right: 20px;
         color: #808ea0;
       }
@@ -75,6 +81,8 @@ export default {
       cursor: pointer;
       padding-left: 70px;
       transition: border-color .3s,background-color .3s,color .3s;
+      border-radius: 5px;
+      margin-bottom: 10px;
       &:hover {
         outline: none;
         background-color: #ecf5ff;
@@ -82,6 +90,7 @@ export default {
       &.is-active {
         color: #409eff;
         background-color: #ecf5ff;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
       }
     }
   }

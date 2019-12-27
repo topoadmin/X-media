@@ -15,7 +15,7 @@ import Layout from '@/layout'
     redirect: false              如果设置 redirect 无法缓存当前路由，需要自行处理
     noCache: false               如果设置为true，页面将不会被缓存(默认为false)，TODO: 如果存在 redirect 则失效，vue-router 问题
     shortcut: false              如果设置为true,就是快捷菜单
-    actionMenu: 'menu'           高亮导航（比 name 优先级高）
+    activeMenu: 'menu'           高亮导航（比 name 优先级高）
     parentNoCache: false         设置 true 不开启父级路由缓存, 目前依赖 actionMenu（TODO: 父级开启了 redirect 就必须设置， 否则父级无法被缓存，因为开启 redirect $route 监听不到进入了父级路由）
   }
  */
@@ -105,7 +105,7 @@ export const asyncRoutes = [
     name: 'Media',
     meta: {
       title: '产品中心',
-      icon: 'education'
+      icon: 'chanpinzhongxin'
     },
     redirect: '/media/list',
     children: [{
@@ -119,7 +119,7 @@ export const asyncRoutes = [
       meta: {
         title: '资源中心'
       },
-      children: [{ // 三级路由测试
+      children: [{
         path: 'toutiao',
         component: () => import('@/views/media/list/toutiao'),
         name: 'MediaListToutiao',
@@ -145,6 +145,16 @@ export const asyncRoutes = [
           activeMenu: 'MediaList'
         }
       }]
+    }, {
+      path: 'add',
+      components: {
+        default: () => import('@/views/media/add'),
+        sidebar
+      },
+      name: 'MediaAdd',
+      meta: {
+        title: '增加资源'
+      }
     }]
   },
   {
@@ -153,18 +163,28 @@ export const asyncRoutes = [
     name: 'Article',
     meta: {
       title: '我要发布',
-      icon: 'education'
+      icon: 'fabu'
     },
-    redirect: '/article/add',
+    redirect: '/article/news',
     children: [{
-      path: 'add',
+      path: 'news',
       components: {
-        default: () => import('@/views/article/add'),
+        default: () => import('@/views/article/news'),
         sidebar
       },
-      name: 'ArticleAdd',
+      name: 'ArticleNews',
       meta: {
-        title: '新闻发布'
+        title: '软文发布'
+      }
+    }, {
+      path: 'video',
+      components: {
+        default: () => import('@/views/article/video'),
+        sidebar
+      },
+      name: 'ArticleVideo',
+      meta: {
+        title: '自媒体发布'
       }
     }]
   },
@@ -173,8 +193,8 @@ export const asyncRoutes = [
     component: Layout,
     name: 'Order',
     meta: {
-      title: '会员订单',
-      icon: 'education'
+      title: '订单中心',
+      icon: 'dingdanzhongxin'
     },
     redirect: '/order/list',
     children: [{
@@ -188,7 +208,7 @@ export const asyncRoutes = [
       meta: {
         title: '我的稿件'
       },
-      children: [{ // 三级路由测试
+      children: [{
         path: 'toutiao',
         component: () => import('@/views/order/list/toutiao'),
         name: 'OrderListToutiao',
@@ -203,6 +223,7 @@ export const asyncRoutes = [
         name: 'OrderListBaijiahao',
         meta: {
           title: '百家号稿件',
+          noCache: true,
           activeMenu: 'OrderList',
           parentNoCache: true
         }
@@ -225,6 +246,46 @@ export const asyncRoutes = [
       name: 'OrderWork',
       meta: {
         title: '工单信息'
+      }
+    }]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    name: 'User',
+    meta: {
+      title: '账户管理',
+      icon: 'user'
+    },
+    children: [{
+      path: '',
+      components: {
+        default: () => import('@/views/user/index'),
+        sidebar
+      },
+      name: 'UserIndex',
+      meta: {
+        title: '账户信息'
+      }
+    }, {
+      path: 'balance',
+      components: {
+        default: () => import('@/views/user/balance'),
+        sidebar
+      },
+      name: 'UserBalance',
+      meta: {
+        title: '余额管理'
+      }
+    }, {
+      path: 'financial',
+      components: {
+        default: () => import('@/views/user/financial'),
+        sidebar
+      },
+      name: 'UserFinancial',
+      meta: {
+        title: '财务报表'
       }
     }]
   }

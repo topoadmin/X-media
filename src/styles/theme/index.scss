@@ -60,6 +60,9 @@ $borderColor: rgba(0,0,0,0.12);
           }
         }
       }
+      .user-menu {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
     }
     #{$_}main-wrapper {
       background: #fff;

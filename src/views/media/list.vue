@@ -46,7 +46,7 @@ export default {
   mixins: [threeCachedViewMixin],
   data() {
     return {
-      activePath: '/media/list/toutiao'
+      activePath: this.$route.path || '/media/list/toutiao'
     }
   },
   activated() {

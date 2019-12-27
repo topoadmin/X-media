@@ -13,7 +13,7 @@
         class="x-main-wrapper"
       >
         <keep-alive :include="cachedViews">
-          <router-view class="x-one-router-view" />
+          <router-view class="x-two-router-view" />
         </keep-alive>
       </div>
     </div>
