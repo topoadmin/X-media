@@ -8,6 +8,7 @@ export function getRequest(params, customParams) {
     params,
     headers: {
       customParams: {
+        closeOtherPage: true,
         ...customParams
       }
     }
@@ -23,6 +24,7 @@ export function postRequest(params, customParams) {
     data: params,
     headers: {
       customParams: {
+        closeOtherPage: true,
         ...customParams
       }
     }
