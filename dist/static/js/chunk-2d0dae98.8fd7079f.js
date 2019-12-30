@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0dae98"],{"6e2e":function(e,n,a){"use strict";a.r(n);var t=function(){var e=this,n=e.$createElement,a=e._self._c||n;return a("h1",[e._v("余额管理")])},c=[],l={name:"UserBalance"},u=l,r=a("4e82"),s=Object(r["a"])(u,t,c,!1,null,null,null);n["default"]=s.exports}}]);
