@@ -2,7 +2,8 @@
   <div class="error404">
     <div class="error404-body-con">
       <el-card class="box-card">
-        <div class="error404-body-con-title">4
+        <div class="error404-body-con-title">
+          4
           <span>0</span>
           4
         </div>

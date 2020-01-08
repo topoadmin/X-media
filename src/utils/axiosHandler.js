@@ -7,9 +7,7 @@ import axios from 'axios'
 import qs from 'qs'
 import { Loading } from 'element-ui'
 import store from '@/store'
-
-import NProgress from 'nprogress' // progress bar
-
+import NProgress from 'nprogress'
 import { randomLenNum } from '@/utils'
 
 let httpRecord = []
@@ -40,7 +38,6 @@ export const inPathDelete = (requestUrl, match = false) => {
     }
     return item
   })
-  // window.httpRecord = httpRecord
 }
 
 function NoRepeat() {

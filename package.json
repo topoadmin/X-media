@@ -1,6 +1,6 @@
 {
   "name": "X-Media",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -8,7 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@smallwei/avue": "2.1.5",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "classlist-polyfill": "^1.2.0",

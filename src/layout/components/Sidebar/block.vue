@@ -80,17 +80,15 @@ export default {
     .item {
       cursor: pointer;
       padding-left: 70px;
-      transition: border-color .3s,background-color .3s,color .3s;
+      // transition: all .3s;
       border-radius: 5px;
       margin-bottom: 10px;
-      &:hover {
-        outline: none;
-        background-color: #ecf5ff;
-      }
+      line-height: 1.2rem;
+      &:hover,
       &.is-active {
-        color: #409eff;
-        background-color: #ecf5ff;
-        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15);
+        outline: none;
+        color: #1a72ff;
+        background-color: #e0ebf8;
       }
     }
   }

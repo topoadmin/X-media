@@ -10,7 +10,7 @@ import website from '@/const/website'
 const keyName = website.key + '-'
 
 /**
- * @title	存储数据
+ * @title	存储
  * @param	{Object} params
  *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
  *  @key name     存储键
@@ -31,7 +31,7 @@ export const setStore = (params = {}) => {
 }
 
 /**
- * @title	获取数据
+ * @title	获取
  * @param	{Object} params
  *  @key type     值为真时，会存储到 sessionStoreage，反之存储到 localStorage
  *  @key name     存储键

@@ -1,4 +1,5 @@
 /**
+ * @title	链接参数转 Object 对象
  * @param {string} url
  * @returns {Object}
  */

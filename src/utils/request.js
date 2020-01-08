@@ -1,10 +1,10 @@
 /**
  * @author  				Azil
  * @version	  		  1.0.0
- * @title           业务处置系统请求控制中心
+ * @title           请求控制中心
  */
 import axios from 'axios'
-import NProgress from 'nprogress' // progress bar
+import NProgress from 'nprogress'
 
 import { interceptorsRequest, interceptorsResponse, errorHandler } from './axiosHandler.js'
 

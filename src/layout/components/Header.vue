@@ -26,7 +26,7 @@
         </li>
         <li class="x-navbar-item">
           <a :class="{ 'is-active': active === 'manage' }" class="x-navbar-item-link" title="产品中心" @click="handleManage('/media')">
-            <svg-icon icon-class="dashboard" />
+            <svg-icon icon-class="example" />
           </a>
         </li>
         <li class="x-navbar-item">
@@ -36,6 +36,9 @@
         </li>
       </ul>
       <ul class="x-navbar-right">
+        <li class="x-navbar-item">
+          <svg-icon icon-class="eye" />
+        </li>
         <li class="x-navbar-item">
           <div class="x-navbar-item-link">
             <el-popover

@@ -6,8 +6,8 @@
 
 <script>
 import website from '@/const/website.js'
-
 export default {
+
   name: 'App',
   created() {
     document.title = website.title

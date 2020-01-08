@@ -1,21 +1,23 @@
 /**
  * @author  				Azil
  * @version	  		  1.0.0
- * @title           输入数据验证
+ * @title           数据验证
  */
 
-// 是否为超链接
 /**
- * @title	生成随机 len 位数字
- * @param {Number} len 长度
- * @param {Date} date 时间
- * @return {Number}
+ * @title	是否为超链接
+ * @param {String} path 链接
+ * @return {Boolean}
  * */
 export function isExternal(path) {
   return /^(http?:|https?:|mailto:|tel:)/.test(path)
 }
 
-// 是否包含特殊字符
+/**
+ * @title	是否包含特殊字符
+ * @param {String} str 内容
+ * @return {Boolean}
+ * */
 export function vEspecial(str) {
   var reg = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\]<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
   return reg.test(str)
@@ -23,15 +25,14 @@ export function vEspecial(str) {
 
 // 是否包含特殊字符（elementUI版本）
 export function validateEspecial(rule, value, callback) {
-  if (typeof value !== 'object' && !value.trim()) { // 为空
-    return callback(new Error('输入内容不能空'))
-  }
   let status = false
-  value.split('').forEach(item => {
-    if (vEspecial(item)) {
-      status = true
-    }
-  })
+  if (value !== null && value !== undefined && (value || value.trim())) {
+    value.split('').forEach(item => {
+      if (vEspecial(item)) {
+        status = true
+      }
+    })
+  }
   if (status) {
     callback(new Error(rule.message || '输入内容不能包含特殊字符'))
   } else {
